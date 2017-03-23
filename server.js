@@ -50,7 +50,7 @@ app.get('/', (request, response) => {
 app.get('/about', (request, response) => {
     response.render('about.hbs', 
         {
-            pageTitle: "About page",
+            pageTitle: "About pageeeeeee",
             message:"Where to we go from here futureeeee wooooorld"
         });
 });
