@@ -1,22 +1,23 @@
-const express = require('express');
-const hbs = require('hbs');
-const path = require('path');
-const fs=require('fs');
-var app = express(); 
+/*jslint esversion: 6 */
+const express = require("express");
+const hbs = require("hbs");
+const path = require("path");
+const fs = require("fs");
+var app = express();
 
 hbs.registerPartials(`${__dirname}/views/partials`);
-app.set('view engine', 'hbs');
+app.set("view engine", "hbs");
 
 app.use((req,res,next)=>{
     var now=new Date().toString();
-    let log=`${now} :${req.method} : ${req.url}`
+    let log=`${now} :${req.method} : ${req.url}`;
     console.log(log);
-    fs.appendFile("server.log",log+`\n`,(err)=>{
+    fs.appendFile("server.log",log+"\n",(err)=>{
         if(err){
-        console.log('Unable to append to server.log')};
-    })
+        console.log('Unable to append to server.log')}
+    });
     next();
-})
+});
 
 // app.use ((req,res,next)=>{
 //     res.render("maintenance.hbs");
@@ -52,7 +53,7 @@ app.get('/about', (request, response) => {
             pageTitle: "About page",
             message:"Where to we go from here futureeeee wooooorld"
         });
-})
+});
   
 app.get('/projects', (request, response) => {
     response.render('about.hbs', 
@@ -60,7 +61,7 @@ app.get('/projects', (request, response) => {
             pageTitle: "Project page",
             message:"Here are my Projects"
         });
-})
+});
 
 app.get('/help', (request, response) => {
     response.render('help.hbs', {
@@ -68,12 +69,12 @@ app.get('/help', (request, response) => {
        pageTitle: "Help page",
         message:"We are here to help you"
     });
-})
+});
 app.get('/bad', (request, response) => {
     response.send({
         errorMessage: "Bad Getway"
     });
-})
+});
 
 
 
